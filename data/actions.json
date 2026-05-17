@@ -1,0 +1,61 @@
+{
+  "Movement & Basic Actions": [
+    "Running", "Stopped", "Walking", "Jumping", "Flying", "Swimming", "Crawling", "Climbing", "Descending", "Falling", 
+    "Soaring", "Sliding", "Rolling", "Spinning", "Swaying", "Dancing", "Singing", "Shouting", "Whispering", "Breathing", 
+    "Looking", "Closed", "Opened", "Touching", "Holding", "Releasing", "Pushing", "Pulling", "Throwing", "Catching"
+  ],
+  "State, Form & Senses": [
+    "Breaking", "Building", "Drawing", "Erasing", "Writing", "Reading", "Listening", "Speaking", "Smiling", "Crying", 
+    "Frowning", "Straightened", "Bent", "Broken", "Torn", "Attached", "Tangled", "Untangled", "Tied", "Locked", 
+    "Unlocked", "Shut", "Shattered", "Intact"
+  ],
+  "Presence, Search & Temperature Change": [
+    "Hidden", "Revealed", "Vanished", "Staying", "Leaving", "Approaching", "Retreating", "Chasing", "Fleeing", "Choking", 
+    "Panting", "Resting", "Working", "Playing", "Sleeping", "Awakened", "Dreaming", "Wandering", "Searching", "Found", 
+    "Lost", "Concealing", "Exposing", "Hiding", "Shining", "Darkening", "Fading", "Clearing", "Cooling", "Heating", 
+    "Chilling", "Burning", "Frozen", "Melting", "Boiling", "Dry", "Wet", "Seeping", "Spreading", "Hardening", 
+    "Softening", "Roughening", "Smoothing", "Sharpening", "Rounding"
+  ],
+  "Scale, Interaction & Combination": [
+    "Expanding", "Shrinking", "Stretching", "Contracting", "Swelling", "Deflating", "Sinking", "Floating", "Trembling", "Fixed", 
+    "Colliding", "Dodging", "Blocking", "Piercing", "Wrapping", "Peeling", "Wearing", "Stripping", "Filling", "Emptying", 
+    "Overflowing", "Lacking", "Adding", "Subtracting", "Dividing", "Combining", "Mixing", "Separating", "Flowing", "Stagnant", 
+    "Dispersing", "Gathering", "Scattering", "Accumulating", "Collapsing", "Erecting", "Lying", "Sitting", "Standing", "Bowing", 
+    "Reaching"
+  ],
+  "Structure, Posture & Life Cycle": [
+    "Twisting", "Unfolding", "Stabbing", "Cutting", "Winding", "Unwinding", "Tightening", "Loosening", "Enduring", "Quitting", 
+    "Advancing", "Backing", "Starting", "Ending", "Continuing", "Snapping", "Hanging", "Detaching", "Suspended", "Rescuing", 
+    "Destroying", "Creating", "Decaying", "Blooming", "Withering", "Growing", "Aging", "Being_born", "Dying", "Reviving", 
+    "Resurrecting"
+  ],
+  "Physical State, Consumption & Health": [
+    "Changing", "Maintained", "Halted", "Moving", "Quivering", "Vibrating", "Exploding", "Imploding", "Glowing", "Shadowing", 
+    "Reflecting", "Absorbing", "Emitting", "Swallowing", "Voming", "Drinking", "Eating", "Starving", "Full", "Hungry", 
+    "Thirsty", "Drunk", "Sober", "Exhausted", "Energetic", "Sick", "Healing", "Injured", "Recovering", "Ripping", 
+    "Sewing"
+  ],
+  "Cognition, Emotion & Attitude": [
+    "Igniting", "Extinguishing", "Illuminating", "Shading", "Emerging", "Concealed", "Forgotten", "Remembered", "Learning", "Teaching", 
+    "Knowing", "Ignorant", "Believing", "Doubting", "Deceiving", "Truthful", "False", "Hoping", "Despairing", "Praying", 
+    "Cursing", "Blessing", "Forgiving", "Punishing", "Praising", "Blaming", "Loving", "Hating"
+  ],
+  "Physical Contact, Expression & Reflexes": [
+    "Embracing", "Repelling", "Kissing", "Striking", "Stroking", "Scratching", "Pinching", "Tickling", "Scowling", "Smirking", 
+    "Laughing", "Wailing", "Sobbing", "Gulping", "Spitting", "Blowing", "Inhaling", "Exhaling", "Coughing", "Yawning", 
+    "Sneezing", "Blinking", "Glaring", "Peeking", "Staring", "Ignoring", "Pointing", "Gesturing", "Nodding", "Shaking", 
+    "Stomping", "Clapping", "Waving", "Greeting", "Parting", "Welcoming", "Banishing"
+  ],
+  "Communication, Performance & Physical Phenomena": [
+    "Asking", "Answering", "Silent", "Chattering", "Vocalizing", "Playing_instrument", "Conducting", "Grooving", "Stepping", "Twirling", 
+    "Leaping", "Landing", "Tumblling", "Arising", "Scaling", "Plummeting", "Paddling", "Diving", "Buoyant", "Submerged", 
+    "Surging", "Calmed"
+  ],
+  "Natural Action, Control & Exploration": [
+    "Storming", "Ceased", "Gusting", "Raining", "Snowing", "Drifted", "Thawed", "Trickling", "Glaciated", "Sprouting", 
+    "Blossoming", "Fruiting", "Shedding", "Wilting", "Rotting", "Birthed", "Raised", "Matured", "Elderly", "Deceased", 
+    "Weathered", "Eroded", "Deposited", "Fossilized", "Erupted", "Caved_in", "Uplifted", "Subsided", "Cracked", "Sealed", 
+    "Sprinting", "Hovering", "Plunging", "Charging", "Roaming", "Prowling", "Lurking", "Tracking", "Capturing", "Liberating", 
+    "Oppressing", "Resisting", "Yielding", "Dominating", "Submitting", "Rebelling", "Conforming", "Pioneering", "Exploring", "Excavating"
+  ]
+}
