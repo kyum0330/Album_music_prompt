@@ -191,4 +191,4 @@ def main():
     selected_place = get_random_item(places)
     selected_emotion2 = get_random_item(emotions2)
 
-   current_date = datetime.now().strftime("%Y년 %m월 %d일")
+    current_date = datetime.now().strftime("%Y년 %m월 %d일")
