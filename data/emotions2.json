@@ -1,0 +1,72 @@
+{
+  "Joy and Jubilation": [
+    "Happy", "Joyful", "Cheerful", "Pleasant", "Bright", "Refreshing", "Fresh", "Jubilant", "Ecstatic", "Overwhelming", 
+    "Proud", "Zesty", "Sweet", "Shining", "Radiant", "Fluttering", "Elated", "Thrilling", "Exciting", "Lively", 
+    "Energetic", "Passionate", "Hot", "Intense", "Vibrant", "Vital", "Rewarding", "Satisfied", "Lighthearted", "Willing",
+    "Fantastic", "Festive", "Heartwarming", "Cheery", "Brilliant", "Touched", "Exhilarating", "Unburdened", "Relieved", "Merry", 
+    "Overjoyed", "Electrifying", "Soaring", "Cheering", "Exuberant", "Humming", "Marvelous", "Heavenly", "Blessed", "Auspicious"
+  ],
+  "Peace and Rest": [
+    "Peaceful", "Serene", "Calm", "Quiet", "Cozy", "Warm", "Toasty", "Comfortable", "Relaxed", "Leisurely", 
+    "Simple", "Pure", "Placid", "Tranquil", "Composed", "Static", "Subtle", "Soft", "Gentle", "Smooth", 
+    "Light", "Meditative", "Purified", "Stable", "Monotonous", "Humble", "Natural", "Friendly", "Tender", "Mild",
+    "Secluded", "Restful", "Unhurried", "Docile", "Snug", "Even", "Harmonious", "Loose", "Gentle", "Plump", 
+    "Unperturbed", "Aloof", "Reliable", "Elegant", "Neat", "Petite", "Drowsy", "Flawless", "Untroubled", "Undisturbed"
+  ],
+  "Sadness and Sorrow": [
+    "Sad", "Sorrowful", "Plaintive", "Grievous", "Tearful", "Miserable", "Depressed", "Gloomy", "Solitary", "Lonely", 
+    "Lonesome", "Empty", "Hollow", "Futile", "Helpless", "Discouraged", "Heartbroken", "Wretched", "Pathful", "Tragic", 
+    "Heavy-hearted", "Distressed", "Desolate", "Devastating", "Pessimistic", "Dark", "Deep", "Heavy", "Heartaching", "Choking",
+    "Bitter", "Aching", "Heart-rending", "Doleful", "Pathetic", "Sorrow-stricken", "Melancholy", "Mournful", "Devastated", "Horrific", 
+    "Piercing", "Grieving", "Poignant", "Tear-filled", "Weeping", "Bereaved", "Piteous", "Resentful", "Unjust", "Pitiful"
+  ],
+  "Intensity and Solemnity": [
+    "Grand", "Solemn", "Confident", "Brave", "Strong", "Firm", "Overpowering", "Dignified", "Urgent", "Tense", 
+    "Sharp", "Rough", "Crude", "Destructive", "Explosive", "Dynamic", "Bold", "Resolute", "Fierce", "Keen", 
+    "Chilly", "Ruthless", "Cold-blooded", "Noble", "Sublime", "Pious", "Weighty", "Majestic", "Sacred", "Shivering",
+    "Gigantic", "Mighty", "Massive", "Tough", "Dashing", "Imposing", "Resolute", "Uncompromising", "Tenacious", "Combative", 
+    "Ambitious", "Reckless", "Merciless", "Stern", "Severe", "Thorough", "Stubborn", "Upright", "Steadfast", "Resounding"
+  ],
+  "Love and Attachment": [
+    "Lovely", "Sweet", "Warm", "Cozy", "Dear", "Faint", "Longing", "Precious", "Melodic", "Romantic", 
+    "Amorous", "Alluring", "Enchanting", "Seductive", "Ravishing", "Shy", "Fresh", "Eternal", "Unchanging", "Deep", 
+    "Devoted", "Earnest", "Heart-rending", "Benevolent", "Tender", "Soft", "Affable", "Harmonious", "Blissful", "Sugary",
+    "Charming", "Affectionate", "Sweet-natured", "Sentimental", "Cherishing", "Generous", "Dedicated", "Heart-burning", "Pure-hearted", "Single-minded", 
+    "Appealing", "Intimate", "Passionate", "Gracious", "Cute", "Sensual", "Glamorous", "Doting", "Sticky", "Adoring"
+  ],
+  "Anger and Resistance": [
+    "Angry", "Mad", "Irritated", "Sharp", "Cold", "Cynical", "Mocking", "Rebellious", "Destructive", "Manic", 
+    "Confused", "Chaotic", "Anxious", "Nervous", "Frustrated", "Fuming", "Agitated", "Excited", "Threatening", "Fearful", 
+    "Chilling", "Bizarre", "Eerie", "Gloomy", "Ominous", "Hostile", "Poisonous", "Hateful", "Harsh", "Cruel",
+    "Furious", "Enraged", "Infuriated", "Fierce", "Wild", "Defiant", "Militant", "Exclusive", "Vindictive", "Indignant", 
+    "Raging", "Threatening", "Annoyed", "Vexed", "Pissed off", "Sullen", "Coy", "Prickly", "Neurotic", "Severe"
+  ],
+  "Yearning and Memories": [
+    "Vague", "Hazy", "Dreamy", "Mysterious", "Dreamlike", "Distant", "Old-fashioned", "Antique", "Vintage", "Nostalgic", 
+    "Sorrowful", "Bittersweet", "Calm", "Indifferent", "Regretful", "Lingering", "Remorseful", "Glad", "Friendly", "Simple", 
+    "Familiar", "Worn", "Faded", "Warm", "Cozy", "Serene", "Composed", "Lyrical", "Emotional", "Dense",
+    "Burning", "Thirsty", "Reminiscing", "Reflecting", "Unforgettable", "Flickering", "Homesick", "Old-school", "Classic", "Discolored", 
+    "Stained", "Dim", "Regretful", "Historic", "Traditional", "Recognizable", "Antiquated", "Deep-rooted", "Fading", "Forgotten"
+  ],
+  "Surprise and Curiosity": [
+    "Surprising", "Wondrous", "Strange", "Clever", "Unique", "Individualistic", "Experimental", "Peculiar", "Odd", "Quirky", 
+    "Curious", "Inquisitive", "Thrilled", "Heart-pounding", "Overwhelming", "Rhythmical", "Playful", "Mischievous", "Witty", "Humorous", 
+    "Pleasant", "Light", "Bouncy", "Sprightly", "New", "Fresh", "Sensual", "Sophisticated", "Urban",
+    "Baffled", "Bewildered", "Dumbfounded", "Mind-blowing", "Different", "Eccentric", "Cheeky", "Bouncing", "Innovative", "Unconventional", 
+    "Avant-garde", "Unusual", "Freaky", "Anonymous", "Puzzling", "Unexpected", "Unforeseen", "Sudden", "Unfamiliar", "Rare"
+  ],
+  "Despair and Darkness": [
+    "Desperate", "Ruinous", "Destructive", "Bleak", "Pitch-black", "Deep", "Heavy", "Crushed", "Pressing", "Suffocating", 
+    "Painful", "Agonizing", "Desperate", "Brutal", "Cold-hearted", "Indifferent", "Dry", "Arid", "Desolate", "Devastated", 
+    "Barren", "Lonely", "Solitary", "Silent", "Deathly", "Frozen", "Still", "Endless", "Eternal", "Profound",
+    "Gruesome", "Horrible", "Creepy", "Stifling", "Stuffy", "Pitch-dark", "Dismal", "Deflating", "Exhausted", "Drained", 
+    "Meaningless", "Finished", "Falling", "Bogged down", "Smothering", "Shabby", "Impoverished", "Stripped", "Abandoned", "Dreary"
+  ],
+  "Hope and Leap": [
+    "Hopeful", "Bright", "Positive", "Optimistic", "Vigorous", "Overflowing", "Brilliant", "Sparkling", "Dazzling", "Expecting", 
+    "Yearning", "Accomplished", "Victorious", "Overcoming", "Breakthrough", "Soaring", "Leaping", "Evolving", "Changing", "New", 
+    "Beginning", "Fluttering", "Hot", "Passionate", "Intense", "Solid", "Determined", "Assertive", "Radiant", "Beautiful",
+    "Progressive", "Advancing", "Ascending", "Uplifting", "Expanding", "Unstoppable", "Promising", "Anticipated", "Up-and-coming", "Rising", 
+    "Resurrecting", "Recovering", "Robust", "Spirited", "Resilient", "Pulsating", "Throbbing", "Springing", "Sprouting", "Prospering"
+  ]
+}
