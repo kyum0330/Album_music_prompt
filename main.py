@@ -19,19 +19,6 @@ def get_random_item(data):
     elif isinstance(data, list):
         return random.choice(data)
 
-def get_seoul_weather():
-    api_key = os.environ.get("WEATHER_API_KEY") 
-    if api_key:
-        try:
-            url = f"http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid={api_key}&lang=kr"
-            response = requests.get(url)
-            if response.status_code == 200:
-                data = response.json()
-                return data['weather'][0]['description']
-        except Exception as e:
-            print(f"날씨 정보를 가져오는 중 에러 발생: {e}")
-    return "날씨 정보가 오류가 생겼음"
-
 def generate_lyrics_with_gemini(prompt):
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -48,7 +35,7 @@ def generate_lyrics_with_gemini(prompt):
         model = genai.GenerativeModel(target_model)
         
         system_instruction = """너는 감성을 자극하는 세계적인 엔터테인먼트 음반 회사의 천재적인 작사가에요.
-요즘 트렌드를 조사한 후에, 다음 주어진 상황, 장르, 감정, 날씨를 바탕으로 독창적이고 음악의 리듬감이 느껴지는 노래 제목과 노래 가사를 만들어주세요.
+요즘 트렌드를 조사한 후에, 다음 주어진 상황, 장르, 감정을 바탕으로 독창적이고 음악의 리듬감이 느껴지는 노래 제목과 노래 가사를 만들어주세요.
 
 모든 답변은 반드시 아래의 [구분자]를 사용하여 섹션을 나누어 작성해야 해요
 
@@ -123,7 +110,7 @@ Based on the feeling of 'Rough and Stopped Canvas on an Endless Clear Day' on Ma
         print(f"Gemini 에러: {e}")
         return {}
 
-def save_to_notion(date_str, genre, weather, prompt, data_dict):
+def save_to_notion(date_str, genre, prompt, data_dict):
     notion_token = os.environ.get("NOTION_TOKEN")
     database_id = os.environ.get("NOTION_DATABASE_ID")
     
@@ -167,7 +154,6 @@ def save_to_notion(date_str, genre, weather, prompt, data_dict):
         "parent": {"database_id": database_id},
         "properties": {
             "Title": {"title": [{"text": {"content": f"{date_str} ({genre})"}}]},
-            "Weather": {"rich_text": [{"text": {"content": weather}}]},
             "Generated Prompt": {"rich_text": [{"text": {"content": prompt}}]},
             "Detail": {"rich_text": [{"text": {"content": data_dict["detail"][:2000]}}]},
             "Purpose": {"rich_text": [{"text": {"content": data_dict["purpose"][:2000]}}]},
@@ -205,23 +191,4 @@ def main():
     selected_place = get_random_item(places)
     selected_emotion2 = get_random_item(emotions2)
 
-    current_date = datetime.now().strftime("%Y년 %m월 %d일")
-    current_weather = get_seoul_weather()
-
-    final_prompt = (
-        f"{selected_genre} 장르의 {current_date} {selected_time}의 "
-        f"{selected_emotion1} 한 {selected_action} 하는 {selected_place}에서의 "
-        f"{selected_emotion2} {current_weather} 날'의 느낌으로 가사를 작성해줘요."
-        f"Intro, Chorus, Verse1, Verse2, Bridge, Outro 등으로 구분해서 한곡 완성해주세요."
-    )
-
-    print(f"\n[1] 생성된 프롬프트: {final_prompt}")
-    print("\n[2] Gemini 가사 생성 중...")
-    
-    result_data = generate_lyrics_with_gemini(final_prompt)
-    
-    print("\n[3] Notion 저장 시도...")
-    save_to_notion(current_date, selected_genre, current_weather, final_prompt, result_data)
-
-if __name__ == "__main__":
-    main()
+    current_date = datetime.now().strftime("%Y년 %m월 %
