@@ -1,9 +1,14 @@
 import json
 import random
 import os
-import re  # 🌟 정규표현식(강력한 텍스트 추출) 라이브러리 추가
+import re
 from datetime import datetime
 import requests
+
+# 🌟 보기 싫은 단순 경고(Warning) 메시지 숨기기
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 import google.generativeai as genai
 
 def load_data(file_path):
@@ -22,15 +27,19 @@ def get_random_item(data):
 def generate_lyrics_with_gemini(prompt):
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
+        print("🚨 [에러] GEMINI_API_KEY를 불러오지 못했습니다! GitHub Secrets를 확인하세요.", flush=True)
         return {}
     
     genai.configure(api_key=api_key)
+    print("  -> 🤖 Gemini API 연결 완료. 모델을 찾습니다...", flush=True)
     
     try:
         available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
         target_model = next((name for name in available_models if 'gemini-1.5-flash' in name), available_models[0] if available_models else None)
         
-        if not target_model: return {}
+        if not target_model: 
+            print("🚨 [에러] 사용할 수 있는 Gemini 모델이 없습니다.", flush=True)
+            return {}
             
         model = genai.GenerativeModel(target_model)
         
@@ -56,29 +65,15 @@ def generate_lyrics_with_gemini(prompt):
 ###UPLOAD###
 유튜브 업로드용 요약 양식으로 작성해주세요. 
 형식: [해쉬태그 5개] + [날짜와 감정 기반 짧은 소개글(한글)] + [날짜와 감정 기반 짧은 한글 소개글 영어로 번역] [곡 정보 요약(제목, 장르, Tempo, Key, 악기)] 순서로 가독성 있게 작성해줘요.
-UPLOAD용 형식 예시는 다음과 같아요.
-
-#감성 #playlist #인디  #멜로딕일렉트로닉 #프로그레시브하우스
-
-2026년 5월 15일, 거칠게 정지된 삶의 캔버스 앞에서 불완전함을 성찰하고, 그 속에서 끝없이 맑고 명료한 희망을 발견하는 감정을 바탕으로 만들어졌습니다.
-
-Based on the feeling of 'Rough and Stopped Canvas on an Endless Clear Day' on May 15, 2026.
-
-* 노래 제목(Subject) : 정지된 투명함 (Stopped Transparency)
-
-* 장르(Genre) : Melodic Electronic / Progressive House
-
-* Tempo : 123 BPM
-
-* Key : E Major, 내면의 고요한 성찰에서 시작해 벅찬 해방감으로 뻗어나가는 맑고 투명한 희망을 담기 위함.
-
-* 악기 구성(Instrument composition) : 웜하고 몽환적인 신스 패드, 리드미컬한 베이스라인, 섬세한 하이햇과 킥 드럼, 아르페지오 신스, 이모셔널한 신스 리드, 미니멀한 보컬 이펙트."""
-
+"""
         full_prompt = f"{system_instruction}\n\n[작사 배경]\n{prompt}"
+        
+        print("  -> ✍️ Gemini에게 가사 작성을 요청합니다. (약 10~20초 소요)", flush=True)
         response = model.generate_content(full_prompt)
         text = response.text
+        print(f"  -> ✅ Gemini 응답 완료! (총 {len(text)}자 생성됨)", flush=True)
 
-        # 🌟 파싱 로직 완벽 수정본: 정규표현식으로 알맹이만 100% 쏙쏙 빼냅니다!
+        # 파싱 로직
         text = re.sub(r'###\s*DETAIL\s*###', '###DETAIL###', text, flags=re.IGNORECASE)
         text = re.sub(r'###\s*PURPOSE\s*###', '###PURPOSE###', text, flags=re.IGNORECASE)
         text = re.sub(r'###\s*LYRICS\s*###', '###LYRICS###', text, flags=re.IGNORECASE)
@@ -90,33 +85,38 @@ Based on the feeling of 'Rough and Stopped Canvas on an Endless Clear Day' on Ma
 
         for marker in markers:
             if marker in text:
-                # 1. 해당 마커 기준으로 텍스트를 자르고 뒷부분(알맹이)을 가져옴
-                part = text.split(marker)[1]
-                
-                # 2. 가져온 알맹이에서 '다음 마커'가 등장하기 전까지만 안전하게 다시 자름
-                min_idx = len(part)
-                for other_marker in markers:
-                    idx = part.find(other_marker)
-                    if idx != -1 and idx < min_idx:
-                        min_idx = idx
-                
-                # 3. 바구니에 저장
-                key = marker.replace("#", "").lower()
-                extracted[key] = part[:min_idx].strip()
+                parts = text.split(marker)
+                if len(parts) > 1:
+                    part = parts[1]
+                    min_idx = len(part)
+                    for other_marker in markers:
+                        idx = part.find(other_marker)
+                        if idx != -1 and idx < min_idx:
+                            min_idx = idx
+                    key = marker.replace("#", "").lower()
+                    extracted[key] = part[:min_idx].strip()
         
+        # 가사가 비어있는지 체크
+        if not extracted.get("lyrics"):
+            print("  -> 🚨 [경고] 가사 파싱 실패! Gemini가 양식에 맞춰 답변하지 않았습니다.", flush=True)
+            print("  -> [Gemini 원본 답변 내용]:\n", text[:500], "...(후략)...", flush=True)
+
         return extracted
         
     except Exception as e:
-        print(f"Gemini 에러: {e}")
+        print(f"🚨 [에러] Gemini 처리 중 문제 발생: {e}", flush=True)
         return {}
 
 def save_to_notion(date_str, genre, prompt, data_dict):
     notion_token = os.environ.get("NOTION_TOKEN")
     database_id = os.environ.get("NOTION_DATABASE_ID")
     
-    # 데이터가 비어있으면 아예 저장을 시도하지 않음
-    if not notion_token or not database_id or not data_dict.get("lyrics"): 
-        print("❌ 저장할 가사(데이터)가 비어있어 Notion 호출을 취소합니다.")
+    if not notion_token or not database_id:
+        print("🚨 [에러] NOTION_TOKEN 또는 NOTION_DATABASE_ID 환경 변수가 없습니다!", flush=True)
+        return
+
+    if not data_dict.get("lyrics"): 
+        print("❌ 저장할 가사(데이터)가 비어있어 Notion 호출을 취소합니다.", flush=True)
         return
 
     headers = {
@@ -125,11 +125,8 @@ def save_to_notion(date_str, genre, prompt, data_dict):
         "Notion-Version": "2022-06-28"
     }
 
-    page_title = f"{date_str} ({genre})"
-    
     children_blocks = [{"object": "block", "type": "heading_2", "heading_2": {"rich_text": [{"text": {"content": "🎶 Gemini 생성 가사 및 곡 구성"}}]}}]
     
-    # 가사가 너무 길어질 경우를 대비한 안전 장치 복구
     for para in data_dict["lyrics"].split('\n\n'):
         para = para.strip()
         if not para: continue
@@ -166,13 +163,14 @@ def save_to_notion(date_str, genre, prompt, data_dict):
     
     response = requests.post('https://api.notion.com/v1/pages', headers=headers, json=payload)
     
-    print(f"📊 [결과] HTTP 상태 코드: {response.status_code}")
+    print(f"📊 [결과] HTTP 상태 코드: {response.status_code}", flush=True)
     if response.status_code == 200:
-        print("✅ Notion 저장 성공! 모든 데이터가 들어갔습니다.")
+        print("✅ Notion 저장 성공! 모든 데이터가 들어갔습니다.", flush=True)
     else:
-        print(f"❌ Notion 저장 실패! 상세 사유: {response.text}")
+        print(f"❌ Notion 저장 실패! 상세 사유: {response.text}", flush=True)
         
 def main():
+    print("🚀 [1/3] 데이터 로드 시작...", flush=True)
     try:
         genres = load_data('data/genres.json')
         times = load_data('data/times.json')
@@ -181,7 +179,7 @@ def main():
         places = load_data('data/places.json')
         emotions2 = load_data('data/emotions2.json')
     except Exception as e:
-        print(f"데이터 로드 실패: {e}")
+        print(f"🚨 데이터 로드 실패: {e}", flush=True)
         return
 
     selected_genre = get_random_item(genres)
@@ -192,3 +190,21 @@ def main():
     selected_emotion2 = get_random_item(emotions2)
 
     current_date = datetime.now().strftime("%Y년 %m월 %d일")
+
+    final_prompt = (
+        f"{selected_genre} 장르의 {current_date} {selected_time}의 "
+        f"{selected_emotion1} 한 {selected_action} 하는 {selected_place}에서의 "
+        f"{selected_emotion2} 날'의 느낌으로 가사를 작성해줘요."
+        f"Intro, Chorus, Verse1, Verse2, Bridge, Outro 등으로 구분해서 한곡 완성해주세요."
+    )
+
+    print(f"✅ 생성된 프롬프트: {final_prompt}", flush=True)
+    
+    print("\n🚀 [2/3] Gemini 가사 생성 중...", flush=True)
+    result_data = generate_lyrics_with_gemini(final_prompt)
+    
+    print("\n🚀 [3/3] Notion 저장 시도...", flush=True)
+    save_to_notion(current_date, selected_genre, final_prompt, result_data)
+
+if __name__ == "__main__":
+    main()
