@@ -1,4 +1,4 @@
-name: Daily Music Prompt Generator
+name: Album Music Prompt Generator
 
 # 언제 실행할지 설정하는 부분입니다.
 on:
