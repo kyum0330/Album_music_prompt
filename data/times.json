@@ -1,0 +1,12 @@
+[
+    "Morning", "Lunchtime", "Evening", "Night", "Dawn", "Noon", "Midnight", "Spring", "Summer", "Autumn", 
+    "Winter", "Past", "Present", "Future", "Today", "Tomorrow", "Yesterday", "Dusk", "Daybreak", "Midday", 
+    "Sunset", "Sunrise", "Early_evening", "Middle_of_the_night", "Monday", "Weekend", "Holiday", "Weekday", "Vacation", "School_break", 
+    "Middle_Ages", "Modern_era", "Contemporary_era", "Eternity", "Moment", "Instant", "Aeon", "One_second", "One_minute", "One_hour", 
+    "One_day", "One_week", "One_month", "One_year", "Decade", "Century", "Millennium", "Prehistoric_age", "Ancient_times", "End_of_the_century", 
+    "Apocalypse", "Beginning", "End", "BC", "AD", "Ice_Age", "Renaissance", "Industrial_Revolution", "Birthday", "Anniversary", 
+    "Christmas", "Halloween", "National_holiday", "New_Year", "End_of_the_year", "Beginning_of_the_month", "End_of_the_month", "Beginning_of_the_year", "Four_seasons", "Change_of_season", 
+    "Early_spring", "Late_spring", "Early_summer", "Midsummer", "Late_summer", "Early_autumn", "Late_autumn", "Early_winter", "Midwinter", "Late_winter", 
+    "Nap_time", "All_nighter", "Night_shift", "Lunch_hour", "Recess", "Late_night", "Twilight", "Gloaming", "Vernal_equinox", "Autumnal_equinox", 
+    "Winter_solstice", "Summer_solstice", "Sunset_time"
+          ]
