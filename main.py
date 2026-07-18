@@ -19,20 +19,6 @@ def get_random_item(data):
     elif isinstance(data, list):
         return random.choice(data)
 
-# [업데이트 항목]: 날씨 정보를 가져오는 함수 추가
-def get_seoul_weather():
-    api_key = os.environ.get("WEATHER_API_KEY") 
-    if api_key:
-        try:
-            url = f"http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid={api_key}&lang=kr"
-            response = requests.get(url)
-            if response.status_code == 200:
-                data = response.json()
-                return data['weather'][0]['description']
-        except Exception as e:
-            print(f"날씨 정보를 가져오는 중 에러 발생: {e}")
-    return "날씨 정보 오류"
-
 def generate_lyrics_with_gemini(prompt):
     api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
@@ -41,10 +27,9 @@ def generate_lyrics_with_gemini(prompt):
     
     genai.configure(api_key=api_key)
     
-    # [업데이트 항목]: 더욱 디테일해진 메타태그 및 프롬프트 (Exclude_styles 포함)
     system_instruction = """[멜로디 및 사운드 디자인 (Meta Tags) 강제 규칙]
 너는 감성을 자극하는 세계적인 엔터테인먼트 음반 회사의 천재적인 작사가 뿐 아니라 곡의 다이내믹을 설계하는 총괄 프로듀서에요.
-요즘 트렌드를 조사한 후에, 제시된 [장르], [시간], [장소], [감정], [행동], [날씨] 데이터를 활용해, 비트감과 감정선이 가장 매력적으로 어우러지는 세련된 곡을 만들어야 해요.
+요즘 트렌드를 조사한 후에, 제시된 [장르], [시간], [장소], [감정], [행동] 데이터를 활용해, 비트감과 감정선이 가장 매력적으로 어우러지는 세련된 곡을 만들어야 해요.
 
 [작사 핵심 및 메타 태그 규칙]
 1. 보컬 및 페르소나: [Smooth alto female vocal, deep calm voice, low octave, subdued pitch, clean natural voice, clear diction, effortless singing, gentle resonance, subtle vocal runs, relaxed delivery, mellow dynamics, soft instrumentation, chill R&B, Solo]. 
@@ -81,15 +66,28 @@ Suno AI가 흔한 중-고음 소프라노를 출력하지 않도록, 과도한 �
               
 2. 비트 및 다이내믹 : 제시된 [장르]에 알맞게 비트 및 다이내믹을 적용해주면 좋겠어요. 
 
-3. 이스터 에그 (행동 교차 룰): Verse 파트 중 한 곳에 반드시 '~할 겸' (예: 바람 쐴 겸, 생각 지울 겸 등)이라는 표현을 딱 한 번 자연스럽게 삽입해서 주인공의 무심하고 여유로운 태도를 연출해요.
+3. 트렌디한 한영 혼용 훅(Hook) 영단어 및 가사 조합 가이드
+2026년 여름 K팝의 핵심 트렌드인 'Effortless Cool (무심한 듯 멋진)'과 'Chill (여유로운)' 무드를 연출하기 위한 가이드입니다. 멜로디의 화려함보다는 리듬감을 극대화하는 짧고 타격감 있는 영단어를 반복하여 귀에 확 꽂히는 중독성 있는 훅을 만듭니다. (단어 뜻은 가사에 표현하지 마세요)
 
-4. 곡 중간(Bridge 이후 등)에 해당 장르를 가장 잘 나타내는 **<Instrumental Solo> (악기 솔로 구간)**를 최소 1회 이상 강제로 삽입해요.
+    3-1. 무심하고 힙한 무드 (Effortless & Chill)
+        - 추천 영단어: Vibe, Chill, Blur, Drip, Fade
+        - 한영 혼용 가사 예시: "시선들은 Blur, 우리만의 Vibe", "복잡한 건 Fade, 그냥 지금 Chill"
 
-5. 전체적으로 매 가사 부분마다 보컬에 대한 상세한 내용을 []을 통해서 최대한 상세하게 표현합니다. 이때 [한국어 가사 전용 규칙 - 로마자 표기 절대 금지]
+    3-2. 청량하고 다이내믹한 썸머 무드 (Refreshing & Kinetic)
+        - 추천 영단어: Dive, Glide, Splash, Pop, Dash
+        - 한영 혼용 가사 예시: "거침없이 Dash, 너의 맘에 Dive"
+
+    3-3. 신비롭고 몽환적인 여름밤 무드 (Mystic Night)
+        - 추천 영단어: Glow, Sway, Maze, Dawn, Breeze
+        - 한영 혼용 가사 예시: "달빛 아래 Sway, 짙어지는 Glow"
+
+4. 이스터 에그 (행동 교차 룰): Verse 파트 중 한 곳에 반드시 '~할 겸' (예: 바람 쐴 겸, 생각 지울 겸 등)이라는 표현을 딱 한 번 자연스럽게 삽입해서 주인공의 무심하고 여유로운 태도를 연출해요.
+
+5. 곡 중간(Bridge 이후 등)에 해당 장르를 가장 잘 나타내는 **<Instrumental Solo> (악기 솔로 구간)**를 최소 1회 이상 강제로 삽입해요.
+
+6. 전체적으로 매 가사 부분마다 보컬에 대한 상세한 내용을 []을 통해서 최대한 상세하게 표현합니다. 이때 [한국어 가사 전용 규칙 - 로마자 표기 절대 금지]
    - 모든 한국어 가사를 작성할 때, 가사 뒤나 옆에 알파벳으로 된 발음 표기(예: Romanization)를 절대 추가하지 마십시오.
    - 오직 순수한 한국어 문장과 의도된 영단어 훅(Hook)으로만 가사를 구성해야 합니다.
-
-6. 해당 장르에 알맞는 최근 노래의 트랜드에 알맞는 단어들을 서칭하여 분석한 후에, 노래 가사 안에 일부 녹여서 표현해주세요.
 
 모든 답변은 반드시 아래의 [구분자]를 사용하여 섹션을 나누어 작성해야 해요
 
@@ -127,7 +125,6 @@ Suno AI가 흔한 중-고음 소프라노를 출력하지 않도록, 과도한 �
     full_prompt = f"{system_instruction}\n\n[작사 배경]\n{prompt}"
     text = ""
     
-    # [업데이트 항목]: 동적 API 모델 자동 전환 로직
     try:
         available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
         print(f"🧐 [참고] 사용 가능한 모델 총 {len(available_models)}개 확인 완료")
@@ -151,7 +148,7 @@ Suno AI가 흔한 중-고음 소프라노를 출력하지 않도록, 과도한 �
                     text = response.text
                     print(f"✅ {target} 생성 성공!")
                     success = True
-                    break  # 성공 시 즉시 루프 탈출
+                    break
                 except Exception as e:
                     print(f"⚠️ {target} 실패 (사유: 할당량 초과 등) -> 다음 모델로 넘어갑니다.")
             else:
@@ -166,7 +163,6 @@ Suno AI가 흔한 중-고음 소프라노를 출력하지 않도록, 과도한 �
         return {}
 
     try:
-        # [업데이트 항목]: 파싱 키워드에 EXCLUDE_STYLES 추가
         markers_base = ["DETAIL", "PURPOSE", "SUNO", "EXCLUDE_STYLES", "VOCAL", "LYRICS", "CLEAN_LYRICS", "TAG", "UPLOAD"]
         for m in markers_base:
             text = re.sub(r'[*_]*#+\s*' + m + r'\s*#*[*_]*', f'###{m}###', text, flags=re.IGNORECASE)
@@ -207,8 +203,7 @@ Suno AI가 흔한 중-고음 소프라노를 출력하지 않도록, 과도한 �
 def get_chunks(text):
     return [{"text": {"content": text[i:i+2000]}} for i in range(0, max(1, len(text)), 2000)]
 
-# [업데이트 항목]: weather 파라미터 추가 및 Exclude_styles 속성 추가
-def save_to_notion(date_str, genre, weather, prompt, data_dict):
+def save_to_notion(date_str, genre, prompt, data_dict):
     notion_token = os.environ.get("NOTION_TOKEN")
     database_id = os.environ.get("NOTION_DATABASE_ID")
     
@@ -251,7 +246,6 @@ def save_to_notion(date_str, genre, weather, prompt, data_dict):
         "parent": {"database_id": database_id},
         "properties": {
             "Title": {"title": [{"text": {"content": f"{date_str} ({genre})"}}]},
-            "Weather": {"rich_text": [{"text": {"content": weather}}]},
             "Generated Prompt": {"rich_text": [{"text": {"content": prompt}}]},
             "Detail": {"rich_text": [{"text": {"content": data_dict.get("detail", "")[:2000]}}]},
             "Purpose": {"rich_text": [{"text": {"content": data_dict.get("purpose", "")[:2000]}}]},
@@ -278,7 +272,6 @@ def save_to_notion(date_str, genre, weather, prompt, data_dict):
 
 def main():
     try:
-        # 단일 장르 로직 유지
         genres = load_data('data/genres.json')
         times = load_data('data/times.json')
         emotions1 = load_data('data/emotions1.json')
@@ -297,10 +290,7 @@ def main():
     selected_emotion2 = get_random_item(emotions2)
 
     current_date = datetime.now().strftime("%Y년 %m월 %d일")
-    # [업데이트 항목]: 날씨 데이터 로드
-    current_weather = get_seoul_weather()
 
-    # [업데이트 항목]: 날씨 내용 포함 및 Action Steps 업데이트
     final_prompt = f"""
 <Current_Status>
 - 진행 단계: 초기 컨셉 브레인스토밍 및 최종 음원 데이터 완성
@@ -310,7 +300,6 @@ def main():
 <Brainstorming_Seed>
 - 장르: {selected_genre}
 - 배경/시간: {current_date}, {selected_time}
-- 날씨: {current_weather}
 - 장소 및 상황: {selected_place}에서 {selected_action} 하는 중
 - 감정선: {selected_emotion1} 분위기 속에서 느껴지는 {selected_emotion2}
 </Brainstorming_Seed>
@@ -325,7 +314,6 @@ def main():
 """
     print(f"\n[1] 생성된 프롬프트: {final_prompt}")
     
-    # [업데이트 항목]: 글자 수 방어막(Word Count Retry) 루프 추가
     max_retries = 5 
     result_data = {}
     
@@ -359,8 +347,7 @@ def main():
         return
 
     print("\n[3] Notion 저장 시도...")
-    # [업데이트 항목]: current_weather 파라미터 전달
-    save_to_notion(current_date, selected_genre, current_weather, final_prompt, result_data)
+    save_to_notion(current_date, selected_genre, final_prompt, result_data)
 
 if __name__ == "__main__":
     main()
