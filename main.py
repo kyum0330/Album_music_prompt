@@ -42,7 +42,7 @@ def generate_lyrics_with_gemini(prompt):
    - ✅ 올바른 예시: <Rain ambient, soft acoustic piano>
 
 [작사 핵심 및 메타 태그 규칙]
-1. 보컬 및 페르소나: [Smooth alto female vocal, deep calm voice, low octave, subdued pitch, clean natural voice, clear diction, effortless singing, gentle resonance, subtle vocal runs, relaxed delivery, mellow dynamics, soft instrumentation, chill R&B, Solo]. 
+1. 보컬 및 페르소나: 
 Suno AI가 흔한 중-고음 소프라노를 출력하지 않도록, 과도한 기교 없이 담백하고 매력적인 중저음 보컬 톤을 강제해요. 보컬과 코러스 부분에 대해서는 다음 내용을 참고해주세요.
 
     1-1. 메타 태그 적용 (Lyrics 영역)
